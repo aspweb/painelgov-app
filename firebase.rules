@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // OPEN ALL
+    // match /{document=**}{
+    //   allow read: if request.auth != null;
+    // }
+
+    // functions
+    function isHimself(user){
+      return request.auth.token.email == user;
+    }
+
+    function isRoot(user, project, entidade){
+      let userPath = /databases/$(database)/documents/users/$(user);
+      let userRole = get(userPath).data.role;
+      let entidadeRole = get(userPath).data.roles[project].get(entidade, null);
+      return (localRole == 'root') || (globalRole == 'root');
+    }
+
+    // users
+    match /users/{user} {
+      allow read: if isRoot(request.auth.uid, 'null', 'null') || isHimself(user);
+      allow write: if isRoot(request.auth.uid, 'null', 'null') || isHimself(user);
+    }
+
+    // FLUTTER FLOW CONFIG
+    match /{document=**} {
+      allow read, write: if request.auth.token.email.matches("firebase@flutterflow.io");
+    }
+  }
+}
