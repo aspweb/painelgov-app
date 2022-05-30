@@ -12,8 +12,11 @@ rm -rf ../public
 cp -r ../maintenance ../public
 
 # aspec toolkit
+rm -rf store/integration
 rm -rf store/firebase
 rm -rf store/ui
+mkdir store/integration
+cp -r aspec-toolkit/store/integration/govtrans store/integration/govtrans
 cp -r aspec-toolkit/store/firebase store/firebase
 cp -r aspec-toolkit/store/ui store/ui
 

@@ -5,3 +5,4 @@ rm -rf node_modules
 rm -rf .nuxt
 rm -rf .eslintcache
 rm -rf ../public
+rm -rf store/integration
