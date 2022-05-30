@@ -1,5 +1,5 @@
 export default () => ({
 
   // ...
-  sample: 'sample'
+  appSlug: 'painelgov'
 })

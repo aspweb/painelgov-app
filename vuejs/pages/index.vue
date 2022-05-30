@@ -1,5 +1,14 @@
 <template>
-  <div></div>
+  <div>
+    <v-btn
+      color="primary"
+      rounded
+      to="/login"
+      class="centered-page"
+    >
+      Login
+    </v-btn>
+  </div>
 </template>
 
 <script>

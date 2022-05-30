@@ -1,13 +1,13 @@
 import colors from 'vuetify/es5/util/colors'
 
 const appColors = {
-  primary: colors.brown,
-  secondary: colors.brown.lighten3,
+  primary: '#A69FE4',
+  secondary: '#99BE8A',
   accent: colors.grey.darken3,
-  info: colors.teal.lighten1,
-  warning: colors.amber.base,
+  info: '#94D6EB',
+  warning: '#E9BE3E',
   error: colors.deepOrange.accent2,
-  success: colors.green.accent3
+  success: '#99BE8A'
 }
 
 export default {
@@ -53,6 +53,8 @@ export default {
   components: [
     '~/components/',
     { path: '~/components/pages/', extensions: ['vue'] },
+    { path: '~/components/indicadores/', extensions: ['vue'] },
+    { path: '~/components/indicadores/blocos/', extensions: ['vue'] },
 
     // Aspec Toolkit
     { path: '~/aspec-toolkit/components', extensions: ['vue'] }

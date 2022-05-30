@@ -55,3 +55,7 @@ html {overflow: auto !important;}
 
 /* snackbars */
 .v-snack__wrapper.v-sheet {padding: 12px; margin: 20px;}
+
+/* TODO - passar para o global */
+.h-100 {height: 100% !important;}
+.position-relative {position: relative !important;}

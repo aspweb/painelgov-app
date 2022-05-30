@@ -8,7 +8,7 @@
   </v-main>
 
   <!-- progress loader -->
-  <Progress />
+  <Progress v-if="loading.length > 0" />
 
   <!-- snackbars -->
   <DefaultSnackbars />
@@ -16,5 +16,7 @@
 </v-app></template><!-- eslint-disable-line -->
 
 <script>
-export default {}
+import BaseView from '@/mixins/BaseView.js'
+const mixins = [BaseView]
+export default { mixins }
 </script>
