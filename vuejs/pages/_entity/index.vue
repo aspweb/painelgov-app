@@ -100,7 +100,25 @@ export default {
           totalLiberado: this.randomMoney()
         }, {
           id: 'DespesasCategoriaEconomica',
-          cols: 3
+          cols: 3,
+          data: [
+            {
+              group: 'Qty',
+              value: 65000
+            }, {
+              group: 'More',
+              value: 29123
+            }, {
+              group: 'Sold',
+              value: 35213
+            }, {
+              group: 'Restocking',
+              value: 51213
+            }, {
+              group: 'Misc',
+              value: 16932
+            }
+          ]
         }, {
           id: 'ReceitasDespesas',
           cols: 12

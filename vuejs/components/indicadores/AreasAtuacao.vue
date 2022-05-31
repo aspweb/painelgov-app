@@ -11,7 +11,10 @@
             <v-icon class="primary white--text rounded-circle float-left mr-2" dense>{{ area.icon }}</v-icon>
             <h4 class="font-weight-medium primary--text font-size-15">{{ area.title }}</h4>
           </div>
-          <p class="blue-grey--text text--lighten-1 font-size-14 mb-0">{{ area.valueDesc }}</p>
+          <p class="blue-grey--text text--lighten-1 font-weight-medium font-size-14 mb-0">
+            <span class="font-size-12">R$</span>
+            {{ area.valueDesc }}
+          </p>
         </v-card>
       </div>
     </v-row>
