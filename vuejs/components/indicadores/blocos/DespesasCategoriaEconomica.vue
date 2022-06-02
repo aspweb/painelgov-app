@@ -47,13 +47,7 @@ export default {
         autorizado: 45,
         pago: 24
       }
-    ],
-    options: {
-      chart: {
-        title: 'Company Performance',
-        subtitle: 'Sales, Expenses, and Profit: 2014-2017'
-      }
-    }
+    ]
   }),
   methods: {}
 }

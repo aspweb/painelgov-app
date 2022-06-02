@@ -11,9 +11,11 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
+    "@carbon/charts-vue": "^1.0.4",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/moment": "^1.6.1",
     "core-js": "^3.15.1",
+    "d3": "^7.4.4",
     "file-saver": "^2.0.5",
     "firebase": "^9.6.2",
     "jspdf": "^2.5.0",
