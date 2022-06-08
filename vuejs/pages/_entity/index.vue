@@ -121,7 +121,19 @@ export default {
           ]
         }, {
           id: 'ReceitasDespesas',
-          cols: 12
+          cols: 12,
+          data: [
+            { group: 'Receitas', value: 10000, key: 'JAN' },
+            { group: 'Receitas', value: 65000, key: 'FEV' },
+            { group: 'Receitas', value: 10000, key: 'MAR' },
+            { group: 'Receitas', value: 49213, key: 'ABR' },
+            { group: 'Receitas', value: 51213, key: 'MAI' },
+            { group: 'Despesas', value: 20000, key: 'JAN' },
+            { group: 'Despesas', value: 25000, key: 'FEV' },
+            { group: 'Despesas', value: 60000, key: 'MAR' },
+            { group: 'Despesas', value: 30213, key: 'ABR' },
+            { group: 'Despesas', value: 55213, key: 'MAI' }
+          ]
         }, {
           id: 'NumerosGerais',
           cols: 6
