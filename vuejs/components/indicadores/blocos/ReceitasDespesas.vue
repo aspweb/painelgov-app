@@ -1,7 +1,7 @@
 <template><div class="component-receitas-despesas">
   <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receitas e despesas</h2>
   <v-container class="pa-0">
-    <ccv-area-chart :data='data.data' :options='options'></ccv-area-chart>
+    <ccv-area-chart :data='data.chart' :options='options'></ccv-area-chart>
   </v-container>
 </div></template>
 
@@ -26,7 +26,7 @@ export default {
             scaleType: 'labels'
           },
           left: {
-            mapsTo: 'value',
+            mapsTo: 'val',
             title: '',
             scaleType: 'linear'
           }
