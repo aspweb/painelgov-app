@@ -40,14 +40,20 @@ export default {
     // ],
   },
 
+  /*
+   * IMPORTANTE: passado para plugin para controle da ordem de chamadas de estilo
+   * ----------------------------------------------------------------------------
+   */
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@/assets/css/app.css'
-  ],
+  // css: [
+  //   '@/assets/css/app.css',
+  //   '@/assets/css/geral.scss'
+  // ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/aspec-toolkit/plugins/charts.js' }
+    { src: '~/aspec-toolkit/plugins/charts.js' },
+    { src: '~/plugins/style.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

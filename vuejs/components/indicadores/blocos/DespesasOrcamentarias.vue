@@ -4,7 +4,6 @@
     <v-progress-circular :value="50" :size="200" width="10" class="chart-empenhados" color="warning"></v-progress-circular>
     <v-progress-circular :value="40" :size="170" width="10" class="chart-liquidados" color="info"></v-progress-circular>
     <v-progress-circular :value="25" :size="140" width="10" class="chart-pagos" color="success"></v-progress-circular>
-    <!-- <div class="layout-cover" /> -->
   </div>
   <div>
     <span class="blue-grey--text text--lighten-1 font-size-10">
@@ -43,5 +42,4 @@ export default {
   .chart-liquidados {margin-left: -85px; bottom: -85px;}
   .chart-pagos {margin-left: -70px; bottom: -70px;}
   .v-progress-circular__underlay {stroke: white;}
-  /*.layout-cover {position: absolute; width: 100%; height: 60px; background: white; bottom: 0;}*/
 </style>

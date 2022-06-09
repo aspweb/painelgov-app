@@ -1,6 +1,6 @@
 <template><div>
   <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Despesas Categoria Econômica</h2>
-  <div v-for="obj in teste" :key="obj.label" class="pb-3">
+  <div v-for="obj in data.list" :key="obj.label" class="pb-3">
     <div class="d-flex">
       <div class="d-flex">
         <span class="font-size-12 blue-grey--text text--lighten-1" style="width: 80px;">{{ obj.label }}</span>
@@ -29,26 +29,6 @@ export default {
   name: 'DespesasCategoriaEconomica',
   extends: BaseComponent,
   props: { data: Object },
-  data: () => ({
-    teste: [
-      {
-        label: 'Despesas correntes',
-        color: 'secondary',
-        autorizado: 85,
-        pago: 45
-      }, {
-        label: 'Despesas de capital',
-        color: 'secondary',
-        autorizado: 65,
-        pago: 35
-      }, {
-        label: 'Reserva de contingência',
-        color: 'secondary',
-        autorizado: 45,
-        pago: 24
-      }
-    ]
-  }),
   methods: {}
 }
 </script>

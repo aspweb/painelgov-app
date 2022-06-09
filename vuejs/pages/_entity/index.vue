@@ -32,7 +32,7 @@
     <!-- visao geral -->
     <VisaoGeral :items="gridBlocks" />
 
-    <!-- TODO - retirar -->
+    <!-- TESTES - RETIRAR
     <v-container>
       <v-row>
         <v-btn
@@ -51,7 +51,7 @@
           {{ btn }}
         </v-btn>
       </v-row>
-    </v-container>
+    </v-container> -->
 
   </v-container>
 </template>
@@ -85,61 +85,89 @@ export default {
         {
           id: 'ReceitaPrevistaArrecadada',
           cols: 3,
-          totalPrevisto: this.randomMoney(),
-          totalArrecadado: this.randomMoney()
+          data: {
+            totalPrevisto: this.randomMoney(),
+            totalArrecadado: this.randomMoney()
+          }
         }, {
           id: 'DespesasOrcamentarias',
           cols: 3,
-          empenhados: 50,
-          liquidados: 40,
-          pagos: 30
+          data: {
+            empenhados: 50,
+            liquidados: 40,
+            pagos: 30
+          }
         }, {
           id: 'RecursosFederaisRecebidos',
           cols: 3,
-          totalPrevisto: this.randomMoney(),
-          totalLiberado: this.randomMoney()
+          data: {
+            totalPrevisto: this.randomMoney(),
+            totalLiberado: this.randomMoney()
+          }
         }, {
           id: 'DespesasCategoriaEconomica',
           cols: 3,
-          data: [
-            {
-              group: 'Qty',
-              value: 65000
-            }, {
-              group: 'More',
-              value: 29123
-            }, {
-              group: 'Sold',
-              value: 35213
-            }, {
-              group: 'Restocking',
-              value: 51213
-            }, {
-              group: 'Misc',
-              value: 16932
-            }
-          ]
+          data: {
+            list: [
+              {
+                label: 'Despesas correntes',
+                color: 'secondary',
+                autorizado: 85,
+                pago: 45
+              }, {
+                label: 'Despesas de capital',
+                color: 'secondary',
+                autorizado: 65,
+                pago: 35
+              }, {
+                label: 'Reserva de contingência',
+                color: 'secondary',
+                autorizado: 45,
+                pago: 24
+              }
+            ]
+          }
         }, {
           id: 'ReceitasDespesas',
           cols: 12,
-          data: [
-            { group: 'Receitas', value: 10000, key: 'JAN' },
-            { group: 'Receitas', value: 65000, key: 'FEV' },
-            { group: 'Receitas', value: 10000, key: 'MAR' },
-            { group: 'Receitas', value: 49213, key: 'ABR' },
-            { group: 'Receitas', value: 51213, key: 'MAI' },
-            { group: 'Despesas', value: 20000, key: 'JAN' },
-            { group: 'Despesas', value: 25000, key: 'FEV' },
-            { group: 'Despesas', value: 60000, key: 'MAR' },
-            { group: 'Despesas', value: 30213, key: 'ABR' },
-            { group: 'Despesas', value: 55213, key: 'MAI' }
-          ]
+          data: {
+            chart: [
+              { group: 'Receitas', val: 10000, key: 'JAN' },
+              { group: 'Receitas', val: 65000, key: 'FEV' },
+              { group: 'Receitas', val: 10000, key: 'MAR' },
+              { group: 'Receitas', val: 49213, key: 'ABR' },
+              { group: 'Receitas', val: 51213, key: 'MAI' },
+              { group: 'Despesas', val: 20000, key: 'JAN' },
+              { group: 'Despesas', val: 25000, key: 'FEV' },
+              { group: 'Despesas', val: 60000, key: 'MAR' },
+              { group: 'Despesas', val: 30213, key: 'ABR' },
+              { group: 'Despesas', val: 55213, key: 'MAI' }
+            ]
+          }
         }, {
           id: 'NumerosGerais',
-          cols: 6
+          cols: 6,
+          data: {
+            header: [
+              { txt: 'Saldo das Contas', val: '16.171.907,44', color: 'success' },
+              { txt: 'Comprometido', val: '24.479.730,62', color: 'success' },
+              { txt: 'Disponível', val: '-10.169.024,47', color: 'warning' }
+            ],
+            body: [
+              { txt: 'Orçamento', val: '786.785,66' },
+              { txt: 'Habitantes', val: '786.785,66' },
+              { txt: 'Servidores', val: '786.785,66' },
+              { txt: 'IDEB', val: '786.785,66' },
+              { txt: 'Empresas', val: '786.785,66' },
+              { txt: 'Ímóveis', val: '786.785,66' },
+              { txt: 'Patrimônio', val: '786.785,66' },
+              { txt: 'Investimento em obras', val: '786.785,66' }
+            ]
+          }
         }, {
           id: 'OrgaosMaioresGastos',
-          cols: 6
+          cols: 6,
+          data: {}
         }
       ]
     }

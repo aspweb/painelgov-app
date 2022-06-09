@@ -18,13 +18,13 @@
       class="px-2 py-3"
     >
       <v-card class="h-100 rounded-lg pa-3" elevation="0">
-        <ReceitaPrevistaArrecadada v-if="block.id === 'ReceitaPrevistaArrecadada'" :data="block" />
-        <DespesasOrcamentarias v-if="block.id == 'DespesasOrcamentarias'" :data="block" />
-        <RecursosFederaisRecebidos v-if="block.id == 'RecursosFederaisRecebidos'" :data="block" />
-        <DespesasCategoriaEconomica v-if="block.id == 'DespesasCategoriaEconomica'" :data="block" />
-        <ReceitasDespesas v-if="block.id == 'ReceitasDespesas'" :data="block" />
-        <NumerosGerais v-if="block.id == 'NumerosGerais'" :data="block" />
-        <OrgaosMaioresGastos v-if="block.id == 'OrgaosMaioresGastos'" :data="block" />
+        <ReceitaPrevistaArrecadada v-if="block.id === 'ReceitaPrevistaArrecadada'" :data="block.data" />
+        <DespesasOrcamentarias v-if="block.id == 'DespesasOrcamentarias'" :data="block.data" />
+        <RecursosFederaisRecebidos v-if="block.id == 'RecursosFederaisRecebidos'" :data="block.data" />
+        <DespesasCategoriaEconomica v-if="block.id == 'DespesasCategoriaEconomica'" :data="block.data" />
+        <ReceitasDespesas v-if="block.id == 'ReceitasDespesas'" :data="block.data" />
+        <NumerosGerais v-if="block.id == 'NumerosGerais'" :data="block.data" />
+        <OrgaosMaioresGastos v-if="block.id == 'OrgaosMaioresGastos'" :data="block.data" />
       </v-card>
     </v-col>
   </v-row>
