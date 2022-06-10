@@ -167,7 +167,29 @@ export default {
         }, {
           id: 'OrgaosMaioresGastos',
           cols: 6,
-          data: {}
+          data: {
+            header: [
+              { txt: 'Total Empenhado', val: '163.929.385,38', color: 'success' },
+              { txt: 'Total Liquidado', val: '53.747.984,97', color: 'success' },
+              { txt: 'Total Pago', val: '52.018.023,50', color: 'success' }
+            ],
+            table: {
+              headers: [
+                { text: 'Especificação', value: 'especificacao' },
+                { text: 'Empenhado', value: 'empenhado' },
+                { text: 'Liquidado', value: 'liquidado' },
+                { text: 'Pago', value: 'pago' }
+              ],
+              data: [
+                { especificacao: 'Gabinete do Prefeito', empenhado: '6.702.808,90', liquidado: '1.151.685,96', pago: '786.785,66' },
+                { especificacao: 'Sec. de Planej. Administração e Finanças', empenhado: '27.048.177,96', liquidado: '58.898,89', pago: '7.442,80' },
+                { especificacao: 'Sec. de Desenv. Economico e Turismo', empenhado: '6.702.808,90', liquidado: '1.151.685,96 ', pago: '786.785,66' },
+                { especificacao: 'Secretaria de Saude', empenhado: '6.702.808,90', liquidado: '1.151.685,96 ', pago: '786.785,66' },
+                { especificacao: 'Procuradoria Geral do Municipio', empenhado: '6.702.808,90', liquidado: '1.151.685,96', pago: '786.785,66' },
+                { especificacao: 'Gabinete do Prefeito', empenhado: '6.702.808,90', liquidado: '1.151.685,96', pago: '786.785,66' }
+              ]
+            }
+          }
         }
       ]
     }
