@@ -10,9 +10,9 @@ rm -rf store/integration
 
 # aliases
 mkdir store/integration
-ln -sf /home/dniel/code/painelgov/vuejs/aspec-toolkit/store/firebase /home/dniel/code/painelgov/vuejs/store/firebase
-ln -sf /home/dniel/code/painelgov/vuejs/aspec-toolkit/store/ui /home/dniel/code/painelgov/vuejs/store/ui
-ln -sf /home/dniel/code/painelgov/vuejs/aspec-toolkit/store/integration/govtrans /home/dniel/code/painelgov/vuejs/store/integration/govtrans
+ln -sf $PWD/aspec-toolkit/store/firebase $PWD/store/firebase
+ln -sf $PWD/aspec-toolkit/store/ui $PWD/store/ui
+ln -sf $PWD/aspec-toolkit/store/integration/govtrans $PWD/store/integration/govtrans
 
 # run
 yarn install
