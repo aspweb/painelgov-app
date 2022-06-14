@@ -7,7 +7,8 @@
   <Header>
     <template v-slot:midle>
       <SelectExercicio
-        v-model="exer"
+        @change="setExercicio"
+        :exercicio="exercicio"
         :exercicios="exercicios"
       />
     </template>
@@ -42,37 +43,18 @@ const created = function () {
   this.bootEntidade()
 }
 
+const watch = {
+  exercicios (to, from) {
+    if (to[0]) this.setExercicio(to[0])
+  }
+}
+
 const computed = {
   ...mapGetters('integration/govtrans', [
     'entidade',
     'exercicios',
     'exercicio'
   ]),
-  // ...mapGetters([
-  //   'remessas'
-  // ]),
-  // ...mapGetters(['devMode']),
-  // logo () {
-  //   return '/sao-goncalo-do-amarante.png'
-  //   // return (!this.entidade || !this.entidade.urlBrasao)
-  //   //   ? '/question.png'
-  //   //   : this.entidade.urlBrasao
-  // },
-  // ultimaRemessa () {
-  //   return this.remessas
-  //     ? moment(this.remessas.ultimaRemessa).format('DD/MM/YYYY')
-  //     : ''
-  // },
-  // primeiroMovimento () {
-  //   return this.remessas
-  //     ? moment(this.remessas.primeiroMovimento).format('MM/YYYY')
-  //     : ''
-  // },
-  // ultimoMovimento () {
-  //   return this.remessas
-  //     ? moment(this.remessas.ultimoMovimento).format('MM/YYYY')
-  //     : ''
-  // },
   menu () {
     const arr = [
       {
@@ -137,6 +119,7 @@ const methods = {
 export default {
   mixins,
   computed,
+  watch,
   created,
   data,
   methods
