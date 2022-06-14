@@ -4,7 +4,14 @@
   <Sidebar :menu="menu"></Sidebar>
 
   <!-- header -->
-  <!-- <Header /> -->
+  <Header>
+    <template v-slot:midle>
+      <SelectExercicio
+        v-model="exer"
+        :exercicios="exercicios"
+      />
+    </template>
+  </Header>
 
   <!-- conteudo da view -->
   <v-main class="light-green lighten-5">
@@ -26,7 +33,7 @@
 
 <script>
 // import moment from 'moment'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import BaseView from '@/mixins/BaseView.js'
 
 const mixins = [BaseView]
@@ -36,6 +43,11 @@ const created = function () {
 }
 
 const computed = {
+  ...mapGetters('integration/govtrans', [
+    'entidade',
+    'exercicios',
+    'exercicio'
+  ]),
   // ...mapGetters([
   //   'remessas'
   // ]),
@@ -68,6 +80,17 @@ const computed = {
         title: 'Indicadores',
         to: '/' + this.entidade.idTenancy
       }, {
+        divider: true,
+        icon: 'mdi-book-open-page-variant',
+        title: 'Despesas Empenhadas a Pagar',
+        items: [
+          {
+            icon: 'mdi-checkbox-blank-circle-outline',
+            title: 'Por credor',
+            to: '/' + this.entidade.idTenancy + '/despesas-empenhadas-pagar/por-credor'
+          }
+        ]
+      }, {
         icon: 'mdi-power',
         title: 'Sair',
         to: '/logout',
@@ -78,17 +101,22 @@ const computed = {
   }
 }
 
+const data = () => ({
+  exer: null
+})
+
 const methods = {
+  ...mapActions([
+    'saveStateLocally'
+  ]),
   ...mapActions('integration/govtrans', [
     'loadEntidade',
     'loadExercicios',
     'loadUnidadesGestoras',
     'loadRemessas'
   ]),
-  ...mapActions([
-    'saveStateLocally'
-  ]),
   ...mapActions('firebase', ['startFirebase']),
+  ...mapMutations('integration/govtrans', ['setExercicio']),
   bootEntidade () {
     const entidade = this.$route.params.entity
     // this.startFirebase() // TODO
@@ -110,6 +138,7 @@ export default {
   mixins,
   computed,
   created,
+  data,
   methods
 }
 </script>

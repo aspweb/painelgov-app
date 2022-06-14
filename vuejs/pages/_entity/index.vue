@@ -1,30 +1,5 @@
 <template>
-  <v-container v-cloak>
-
-    <!-- header // TODO - trocar -->
-    <div class="d-flex mx-3 mt-3">
-      <v-spacer />
-      <v-col
-        v-if="exercicios.length"
-        cols="12"
-        md="4"
-        class="pb-0">
-        <v-select
-          v-model="exer"
-          :items="exercicios"
-          :rules="[v => !!v || 'Exercício obrigatório']"
-          required
-          dense
-          @change="setExercicio(exer)"
-          item-text="nome"
-          item-value="id"
-          return-object
-          label="Exercício"
-          outlined
-        />
-      </v-col>
-      <v-spacer />
-    </div>
+  <v-container v-cloak class="pt-8">
 
     <!-- areas de atuacao -->
     <AreasAtuacao :items="areasAtuacao" class="mb-3" />
