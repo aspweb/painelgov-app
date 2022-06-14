@@ -9,7 +9,12 @@
         <v-card class="px-2 pt-2 pb-1 rounded-lg" elevation="0">
           <div class="d-flex">
             <v-icon class="primary white--text rounded-circle float-left mr-2" dense>{{ area.icon }}</v-icon>
-            <h4 class="font-weight-medium primary--text font-size-15">{{ area.title }}</h4>
+            <a
+              @click="goTo(entidade.idTenancy + '/indicadores/' + area.slug)"
+              class="text-decoration-none font-weight-medium primary--text font-size-15"
+            >
+              {{ area.title }}
+            </a>
           </div>
           <p class="blue-grey--text text--lighten-1 font-weight-medium font-size-14 mb-0">
             <span class="font-size-12">R$</span>
@@ -26,7 +31,12 @@ import BaseComponent from '@/aspec-toolkit/mixins/BaseComponent.js'
 export default {
   name: 'AreasAtuacao',
   extends: BaseComponent,
-  props: { items: Array },
-  methods: {}
+  props: {
+    items: Array,
+    entidade: Object
+  },
+  methods: {
+    goTo (path) { this.$emit('click', path) }
+  }
 }
 </script>

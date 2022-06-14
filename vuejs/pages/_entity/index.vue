@@ -2,7 +2,12 @@
   <v-container v-cloak class="pt-8">
 
     <!-- areas de atuacao -->
-    <AreasAtuacao :items="areasAtuacao" class="mb-3" />
+    <AreasAtuacao
+      @click="goTo"
+      :items="areasAtuacao"
+      :entidade="entidade"
+      class="mb-3"
+    />
 
     <!-- visao geral -->
     <VisaoGeral :items="gridBlocks" />
@@ -48,11 +53,11 @@ export default {
     areasAtuacao () {
       const icon = 'mdi-currency-usd-off'
       return [
-        { title: 'Saúde', icon, valueDesc: this.randomMoney() },
-        { title: 'Educação', icon, valueDesc: this.randomMoney() },
-        { title: 'Administração', icon, valueDesc: this.randomMoney() },
-        { title: 'Assistência Social', icon, valueDesc: this.randomMoney() },
-        { title: 'Gestão Ambiental', icon, valueDesc: this.randomMoney() }
+        { slug: 'saude', title: 'Saúde', icon, valueDesc: this.randomMoney() },
+        { slug: 'educacao', title: 'Educação', icon, valueDesc: this.randomMoney() },
+        { slug: 'administracao', title: 'Administração', icon, valueDesc: this.randomMoney() },
+        { slug: 'assistencia-social', title: 'Assistência Social', icon, valueDesc: this.randomMoney() },
+        { slug: 'gestao-ambiental', title: 'Gestão Ambiental', icon, valueDesc: this.randomMoney() }
       ]
     },
     gridBlocks () {

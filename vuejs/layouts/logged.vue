@@ -59,8 +59,18 @@ const computed = {
     const arr = [
       {
         icon: 'mdi-home',
-        title: 'Indicadores',
+        title: 'Visão geral',
         to: '/' + this.entidade.idTenancy
+      }, {
+        icon: 'mdi-view-dashboard',
+        title: 'Indicadores',
+        items: [
+          {
+            icon: 'mdi-checkbox-blank-circle-outline',
+            title: 'Saúde',
+            to: '/' + this.entidade.idTenancy + '/indicadores/saude'
+          }
+        ]
       }, {
         divider: true,
         icon: 'mdi-book-open-page-variant',
