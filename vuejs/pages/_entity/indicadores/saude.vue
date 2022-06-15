@@ -1,8 +1,8 @@
 <template>
-  <v-container v-cloak class="pt-10">
+  <v-container v-cloak class="pt-10 px-8">
 
     <!-- header -->
-    <v-row class="px-3">
+    <v-row>
       <h1 class="font-weight-medium blue-grey--text text--darken-4 font-size-24">
         Saúde
       </h1>
@@ -10,7 +10,7 @@
 
     <!-- timeline -->
     <v-row>
-      <v-col class="px-2 py-3">
+      <v-col class="px-0 py-3">
         <v-card class="h-100 rounded-lg pa-3" elevation="0">
           <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Despesas orçamentárias por função: Saúde</h2>
           <v-row>
@@ -31,9 +31,9 @@
       </v-col>
     </v-row>
 
-    <!-- pie charts -->
+    <!-- charts -->
     <v-row>
-      <v-col class="px-2 py-3">
+      <v-col class="px-0 py-3">
         <v-card class="h-100 rounded-lg pa-3" elevation="0">
           <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Pagamentos orçamentários por subfunção</h2>
           <ccv-pie-chart :data='subfuncao' :options='options'></ccv-pie-chart>
@@ -49,9 +49,16 @@
 
     <!-- table -->
     <v-row>
-      <v-col class="px-2 py-3">
-        <v-card class="h-100 rounded-lg pa-3" elevation="0">
-          <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Pagamentos orçamentários por Projeto/Atividade</h2>
+      <v-col class="px-0 py-3">
+        <v-card class="h-100 rounded-lg" elevation="0">
+          <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium pa-3 mb-1">Pagamentos orçamentários por Projeto/Atividade</h2>
+          <v-data-table
+            :headers="tableHeaders"
+            :items="tableItems"
+            :items-per-page="-1"
+            class="blue-grey--text text--darken-3"
+            hide-default-footer
+          />
         </v-card>
       </v-col>
     </v-row>
@@ -86,9 +93,17 @@ export default {
         pie: {
           alignment: 'center'
         },
-        height: '350px',
+        height: '200px',
         color: { scale }
       }
+    },
+    tableHeaders () {
+      return [
+        { text: 'Especificação', value: 'legenda', sortable: false },
+        { text: 'Empenhado', value: 'empenhado', sortable: false },
+        { text: 'Liquidado', value: 'liquidado', sortable: false },
+        { text: 'Pago', value: 'pago', sortable: false }
+      ]
     }
   },
   data: () => ({
@@ -127,6 +142,32 @@ export default {
       }, {
         group: 'Gestão dos Serviços de Atenção Básica em Saúde',
         value: 65000
+      }
+    ],
+    tableItems: [
+      {
+        legenda: 'Manutenção das Atividades do Hospital e Maternidade Antonina Aderaldo Castelo',
+        empenhado: 12607749.41,
+        liquidado: 12198704.92,
+        pago: 11916174.6
+      },
+      {
+        legenda: 'Manutenção dos Serviços de Atenção Básica em Saúde',
+        empenhado: 10017829.2,
+        liquidado: 9405433.31,
+        pago: 9267006.26
+      },
+      {
+        legenda: 'Manutenção dos Serviços de Atenção Básica em Saúde',
+        empenhado: 10017829.2,
+        liquidado: 9405433.31,
+        pago: 9267006.26
+      },
+      {
+        legenda: 'Manutenção dos Serviços de Atenção Básica em Saúde',
+        empenhado: 10017829.2,
+        liquidado: 9405433.31,
+        pago: 9267006.26
       }
     ]
   })
