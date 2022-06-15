@@ -61,8 +61,8 @@ export default {
   components: [
     '~/components/',
     { path: '~/components/pages/', extensions: ['vue'] },
-    { path: '~/components/indicadores/', extensions: ['vue'] },
-    { path: '~/components/indicadores/blocos/', extensions: ['vue'] },
+    { path: '~/components/visao-geral/', extensions: ['vue'] },
+    { path: '~/components/visao-geral/blocos/', extensions: ['vue'] },
 
     // Aspec Toolkit
     { path: '~/aspec-toolkit/components', extensions: ['vue'] }

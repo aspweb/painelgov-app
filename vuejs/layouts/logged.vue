@@ -65,13 +65,7 @@ const computed = {
       }, {
         icon: 'mdi-view-dashboard',
         title: 'Visão geral',
-        items: [
-          {
-            icon: 'mdi-checkbox-blank-circle-outline',
-            title: 'Saúde',
-            to: '/' + this.entidade.idTenancy + '/indicadores/saude'
-          }
-        ]
+        to: '/' + this.entidade.idTenancy + '/visao-geral'
       }, {
         divider: true,
         icon: 'mdi-book-open-page-variant',

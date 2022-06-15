@@ -10,7 +10,7 @@
           <div class="d-flex">
             <v-icon class="primary white--text rounded-circle float-left mr-2" dense>{{ area.icon }}</v-icon>
             <a
-              @click="goTo(entidade.idTenancy + '/indicadores/' + area.slug)"
+              @click="goTo('/' + entidade.idTenancy + '/visao-geral/' + area.slug)"
               class="text-decoration-none font-weight-medium primary--text font-size-15"
             >
               {{ area.title }}
