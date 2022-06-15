@@ -44,7 +44,3 @@ export default {
   methods: {}
 }
 </script>
-
-<style>
-  .component-receitas-despesas .cds--cc--legend .legend-item .checkbox {border-radius: 50%;}
-</style>

@@ -3,11 +3,12 @@ import colors from 'vuetify/es5/util/colors'
 const appColors = {
   primary: '#A69FE4',
   secondary: '#99BE8A',
-  accent: colors.grey.darken3,
   info: '#94D6EB',
   warning: '#E9BE3E',
-  error: colors.deepOrange.accent2,
-  success: '#99BE8A'
+  error: '#F15C80',
+  success: '#99BE8A',
+  accent: '#65789B'
+  // error: colors.deepOrange.accent2 // sample
 }
 
 export default {
@@ -20,8 +21,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - gtrel',
-    title: 'gtrel',
+    titleTemplate: '%s - painelgov',
+    title: 'painelgov',
     htmlAttrs: {
       lang: 'pt-br'
     },

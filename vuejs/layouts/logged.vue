@@ -58,12 +58,13 @@ const computed = {
   menu () {
     const arr = [
       {
-        icon: 'mdi-home',
-        title: 'Visão geral',
+        // icon: 'mdi-home',
+        icon: 'mdi-chart-timeline-variant-shimmer',
+        title: 'Indicadores',
         to: '/' + this.entidade.idTenancy
       }, {
         icon: 'mdi-view-dashboard',
-        title: 'Indicadores',
+        title: 'Visão geral',
         items: [
           {
             icon: 'mdi-checkbox-blank-circle-outline',
