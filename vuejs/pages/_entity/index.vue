@@ -43,8 +43,8 @@
       </v-card>
     </v-container>
 
-  <!-- receitas chart -->
-    <v-container>
+    <!-- receitas chart -->
+    <v-container class="mb-4">
       <h1 class="font-weight-medium lime--text text--darken-4 font-size-24 mb-4">Receitas</h1>
       <v-row>
         <v-col v-for="items in receitas" :key="items.id" :cols="items.cols">
@@ -93,6 +93,49 @@
         </v-col>
       </v-row>
     </v-container>
+
+    <!-- blocos -->
+    <v-row class="px-3 pb-3">
+      <v-col
+        v-for="obj in blocks"
+        :cols="obj.cols"
+        :key="obj.title">
+
+        <!-- titulo -->
+        <h1 v-if="obj.type == 'title' || !obj.type" class="font-weight-medium lime--text text--darken-4 font-size-24">{{ obj.title }}</h1>
+
+        <!-- simple bar chart -->
+        <v-card
+          v-if="obj.type === 'simple-bar-chart'"
+          class="h-100 rounded-lg pa-3"
+          elevation="0"
+        >
+          <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">{{ obj.title }}</h2>
+          <ccv-simple-bar-chart
+            v-if="obj.chart"
+            :data='obj.chart.data'
+            :options='obj.chart.options'
+          ></ccv-simple-bar-chart>
+        </v-card>
+
+        <!-- simple bar chart -->
+        <v-card
+          v-if="obj.type === 'pie-chart'"
+          class="h-100 rounded-lg pa-3"
+          elevation="0"
+        >
+          <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">{{ obj.title }}</h2>
+          <ccv-pie-chart
+            v-if="obj.chart"
+            :data='obj.chart.data'
+            :options='obj.chart.options'
+          ></ccv-pie-chart>
+        </v-card>
+
+      </v-col>
+    </v-row>
+    <!-- /blocos -->
+
   </v-container>
 </template>
 
@@ -328,7 +371,112 @@ export default {
           }
         }
       ]
+    },
+
+    // blocos
+    blocks () {
+      const colors = this.$vuetify.theme.themes.dark
+      return [
+
+        // folha - titulo
+        { cols: 12, title: 'Folha' },
+
+        // folha - Folha de pagamento
+        {
+          cols: 8,
+          title: 'Folha de pagamento - vencimentos e vantagens',
+          type: 'simple-bar-chart',
+          chart: {
+            data: [
+              { group: 'JAN', value: 280 }, { group: 'FEV', value: 310 }, { group: 'MAR', value: 280 }, { group: 'ABR', value: 340 }, { group: 'MAI', value: 280 }, { group: 'JUN', value: 280 }, { group: 'JUL', value: 280 }, { group: 'AGO', value: 280 }, { group: 'SET', value: 300 }, { group: 'OUT', value: 0 }, { group: 'NOV', value: 0 }, { group: 'DEZ', value: 0 }
+            ],
+            options: {
+              title: '',
+              toolbar: { enabled: false },
+              height: '200px',
+              axes: {
+                left: { mapsTo: 'value' },
+                bottom: { mapsTo: 'group', scaleType: 'labels' }
+              },
+              color: {
+                scale: { JAN: colors.success, FEV: colors.success, MAR: colors.success, ABR: colors.success, MAI: colors.success, JUN: colors.success, JUL: colors.success, AGO: colors.success, SET: colors.success, OUT: colors.success, NOV: colors.success, DEZ: colors.success }
+              }
+            }
+          }
+        },
+
+        // folha - vinculo funcional
+        {
+          cols: 4,
+          title: 'Folha por vínculo funcional',
+          type: 'pie-chart',
+          chart: {
+            data: [
+              { group: 'Taxas', value: 47900049.2 },
+              { group: 'IRRF', value: 37900049.2 },
+              { group: 'ISS', value: 10000000.2 }
+            ],
+            options: {
+              title: '',
+              height: '200px',
+              legend: { alignment: 'center' },
+              pie: { alignment: 'center' },
+              toolbar: { enabled: false },
+              color: { scale: { Taxas: colors.success, IRRF: colors.accent, ISS: colors.info } }
+            }
+          }
+        },
+
+        // folha - Diárias
+        {
+          cols: 8,
+          title: 'Diárias',
+          type: 'simple-bar-chart',
+          chart: {
+            data: [
+              { group: 'JAN', value: 280 }, { group: 'FEV', value: 310 }, { group: 'MAR', value: 280 }, { group: 'ABR', value: 340 }, { group: 'MAI', value: 280 }, { group: 'JUN', value: 280 }, { group: 'JUL', value: 280 }, { group: 'AGO', value: 280 }, { group: 'SET', value: 300 }, { group: 'OUT', value: 0 }, { group: 'NOV', value: 0 }, { group: 'DEZ', value: 0 }
+            ],
+            options: {
+              title: '',
+              toolbar: { enabled: false },
+              height: '200px',
+              axes: {
+                left: { mapsTo: 'value' },
+                bottom: { mapsTo: 'group', scaleType: 'labels' }
+              },
+              color: {
+                scale: { JAN: colors.success, FEV: colors.success, MAR: colors.success, ABR: colors.success, MAI: colors.success, JUN: colors.success, JUL: colors.success, AGO: colors.success, SET: colors.success, OUT: colors.success, NOV: colors.success, DEZ: colors.success }
+              }
+            }
+          }
+        },
+
+        // folha - Quantidade de agentes por unidade orçamentária
+        {
+          cols: 4,
+          title: 'Quantidade de agentes por unidade orçamentária',
+          type: 'pie-chart',
+          chart: {
+            data: [
+              { group: 'Taxas', value: 47900049.2 },
+              { group: 'IRRF', value: 37900049.2 },
+              { group: 'ISS', value: 10000000.2 }
+            ],
+            options: {
+              title: '',
+              height: '200px',
+              legend: { alignment: 'center' },
+              pie: { alignment: 'center' },
+              toolbar: { enabled: false },
+              color: { scale: { Taxas: colors.success, IRRF: colors.accent, ISS: colors.info } }
+            }
+          }
+        }
+
+      ]
     }
+    // END - blocos
+
   },
   data: () => ({
     exer: null

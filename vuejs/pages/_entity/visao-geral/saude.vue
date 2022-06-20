@@ -87,12 +87,8 @@ export default {
       return {
         toolbar: { enabled: false },
         resizable: true,
-        legend: {
-          alignment: 'center'
-        },
-        pie: {
-          alignment: 'center'
-        },
+        legend: { alignment: 'center' },
+        pie: { alignment: 'center' },
         height: '200px',
         color: { scale }
       }
