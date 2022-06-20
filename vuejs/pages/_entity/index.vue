@@ -33,58 +33,6 @@
       </v-row>
     </v-container>
 
-    <!-- receitas chart -->
-    <v-container class="mb-4">
-      <h1 class="font-weight-medium lime--text text--darken-4 font-size-24 mb-4">Receitas</h1>
-      <v-row>
-        <v-col v-for="items in receitas" :key="items.id" :cols="items.cols">
-
-          <!-- receita mensal -->
-          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaMensal'">
-            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita mensal</h2>
-            <ccv-simple-bar-chart :data='items.data.chart' :options='items.options'></ccv-simple-bar-chart>
-          </v-card>
-
-          <!-- previsão arrecadação -->
-          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'PrevisaoArrecadacao'">
-            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Previsão x Arrecadação</h2>
-            <ccv-grouped-bar-chart :data='items.data.chart' :options='items.options'></ccv-grouped-bar-chart>
-          </v-card>
-
-          <!-- receita por origem -->
-          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaOrcamentariaOrigem'">
-            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita Orçamentária por Origem</h2>
-            <div class="d-flex align-center mb-4">
-              <small class="font-size-12 blue-grey--text text--lighten-1 font-weight-bold mt-1 mr-1">R$</small>
-              <p class="font-size-20 light-green--text text-lighten-1 ma-0 font-weight-bold">97.755.202,47</p>
-            </div>
-            <ccv-pie-chart :data='items.data.chart' :options='items.options'></ccv-pie-chart>
-          </v-card>
-
-          <!-- receita de transferências -->
-          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaTransferencias'">
-            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita de Transferências</h2>
-            <div class="d-flex align-center mb-4">
-              <small class="font-size-12 blue-grey--text text--lighten-1 font-weight-bold mt-1 mr-1">R$</small>
-              <p class="font-size-20 light-green--text text-lighten-1 ma-0 font-weight-bold">97.755.202,47</p>
-            </div>
-            <ccv-pie-chart :data='items.data.chart' :options='items.options'></ccv-pie-chart>
-          </v-card>
-
-          <!-- receita tributária -->
-          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaTributaria'">
-            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita Tributária</h2>
-            <div class="d-flex align-center mb-4">
-              <small class="font-size-12 blue-grey--text text--lighten-1 font-weight-bold mt-1 mr-1">R$</small>
-              <p class="font-size-20 light-green--text text-lighten-1 ma-0 font-weight-bold">97.755.202,47</p>
-            </div>
-            <ccv-pie-chart :data='items.data.chart' :options='items.options'></ccv-pie-chart>
-          </v-card>
-
-        </v-col>
-      </v-row>
-    </v-container>
-
     <!-- blocos -->
     <v-row class="px-3 pb-3">
       <v-col
@@ -123,7 +71,7 @@
           ></ccv-pie-chart>
         </v-card>
 
-        <!-- simple area chart -->
+        <!-- area chart -->
         <v-card
           v-if="obj.type === 'area-chart'"
           class="h-100 rounded-lg pa-3"
@@ -200,6 +148,58 @@
       </v-col>
     </v-row>
     <!-- /blocos -->
+
+    <!-- receitas chart -->
+    <v-container class="mb-4">
+      <h1 class="font-weight-medium lime--text text--darken-4 font-size-24 mb-4">Receitas</h1>
+      <v-row>
+        <v-col v-for="items in receitas" :key="items.id" :cols="items.cols">
+
+          <!-- receita mensal -->
+          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaMensal'">
+            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita mensal</h2>
+            <ccv-simple-bar-chart :data='items.data.chart' :options='items.options'></ccv-simple-bar-chart>
+          </v-card>
+
+          <!-- previsão arrecadação -->
+          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'PrevisaoArrecadacao'">
+            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Previsão x Arrecadação</h2>
+            <ccv-grouped-bar-chart :data='items.data.chart' :options='items.options'></ccv-grouped-bar-chart>
+          </v-card>
+
+          <!-- receita por origem -->
+          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaOrcamentariaOrigem'">
+            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita Orçamentária por Origem</h2>
+            <div class="d-flex align-center mb-4">
+              <small class="font-size-12 blue-grey--text text--lighten-1 font-weight-bold mt-1 mr-1">R$</small>
+              <p class="font-size-20 light-green--text text-lighten-1 ma-0 font-weight-bold">97.755.202,47</p>
+            </div>
+            <ccv-pie-chart :data='items.data.chart' :options='items.options'></ccv-pie-chart>
+          </v-card>
+
+          <!-- receita de transferências -->
+          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaTransferencias'">
+            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita de Transferências</h2>
+            <div class="d-flex align-center mb-4">
+              <small class="font-size-12 blue-grey--text text--lighten-1 font-weight-bold mt-1 mr-1">R$</small>
+              <p class="font-size-20 light-green--text text-lighten-1 ma-0 font-weight-bold">97.755.202,47</p>
+            </div>
+            <ccv-pie-chart :data='items.data.chart' :options='items.options'></ccv-pie-chart>
+          </v-card>
+
+          <!-- receita tributária -->
+          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaTributaria'">
+            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita Tributária</h2>
+            <div class="d-flex align-center mb-4">
+              <small class="font-size-12 blue-grey--text text--lighten-1 font-weight-bold mt-1 mr-1">R$</small>
+              <p class="font-size-20 light-green--text text-lighten-1 ma-0 font-weight-bold">97.755.202,47</p>
+            </div>
+            <ccv-pie-chart :data='items.data.chart' :options='items.options'></ccv-pie-chart>
+          </v-card>
+
+        </v-col>
+      </v-row>
+    </v-container>
 
   </v-container>
 </template>
