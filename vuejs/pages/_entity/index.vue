@@ -41,7 +41,7 @@
         :key="obj.title">
 
         <!-- titulo -->
-        <h1 v-if="obj.type == 'title' || !obj.type" class="font-weight-medium lime--text text--darken-4 font-size-24">{{ obj.title }}</h1>
+        <h1 v-if="obj.type == 'title' || !obj.type" class="font-weight-medium lime--text text--darken-4 font-size-24 mt-3 mb-n3">{{ obj.title }}</h1>
 
         <!-- simple bar chart -->
         <v-card
