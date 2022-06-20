@@ -411,11 +411,7 @@ export default {
           title: 'Folha por vínculo funcional',
           type: 'pie-chart',
           chart: {
-            data: [
-              { group: 'Taxas', value: 47900049.2 },
-              { group: 'IRRF', value: 37900049.2 },
-              { group: 'ISS', value: 10000000.2 }
-            ],
+            data: [ { group: 'Taxas', value: 47900049.2 }, { group: 'IRRF', value: 37900049.2 }, { group: 'ISS', value: 10000000.2 } ],
             options: {
               title: '',
               height: '200px',
@@ -457,11 +453,7 @@ export default {
           title: 'Quantidade de agentes por unidade orçamentária',
           type: 'pie-chart',
           chart: {
-            data: [
-              { group: 'Taxas', value: 47900049.2 },
-              { group: 'IRRF', value: 37900049.2 },
-              { group: 'ISS', value: 10000000.2 }
-            ],
+            data: [ { group: 'Taxas', value: 47900049.2 }, { group: 'IRRF', value: 37900049.2 }, { group: 'ISS', value: 10000000.2 } ],
             options: {
               title: '',
               height: '200px',
