@@ -191,6 +191,12 @@
           />
         </v-card>
 
+        <!-- line chart -->
+        <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="obj.type === 'line-chart'">
+          <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">{{ obj.title }}</h2>
+          <ccv-line-chart :data="obj.chart.data" :options="obj.chart.options"></ccv-line-chart>
+        </v-card>
+
       </v-col>
     </v-row>
     <!-- /blocos -->
@@ -326,7 +332,9 @@ export default {
                 'Rec. de Contribuições': this.$vuetify.theme.themes.dark.accent,
                 'Rec. Tributária': this.$vuetify.theme.themes.dark.info
               }
-            }
+            },
+            legend: { alignment: 'center' },
+            pie: { alignment: 'center' }
           }
         }, {
           id: 'ReceitaTransferencias',
@@ -348,7 +356,9 @@ export default {
                 Educação: this.$vuetify.theme.themes.dark.accent,
                 Saúde: this.$vuetify.theme.themes.dark.info
               }
-            }
+            },
+            legend: { alignment: 'center' },
+            pie: { alignment: 'center' }
           }
         }, {
           id: 'ReceitaTributaria',
@@ -370,7 +380,9 @@ export default {
                 IRRF: this.$vuetify.theme.themes.dark.accent,
                 ISS: this.$vuetify.theme.themes.dark.info
               }
-            }
+            },
+            legend: { alignment: 'center' },
+            pie: { alignment: 'center' }
           }
         }
       ]
@@ -581,8 +593,169 @@ export default {
                 percent2021: '10,72',
                 2020: '3.436.744,8',
                 percent2020: '66,03'
+              },
+              {
+                elemento: 'Obrigações Patronais',
+                2021: '3.805.245,11',
+                percent2021: '10,72',
+                2020: '3.436.744,8',
+                percent2020: '66,03'
+              },
+              {
+                elemento: 'Despesas de Exercícios Anteriores - Pessoal',
+                2021: '28.822,04',
+                percent2021: '0,0',
+                2020: '0,00',
+                percent2020: '0,0'
+              },
+              {
+                elemento: 'Material de Consumo',
+                2021: '1.592.546,0',
+                percent2021: '2,70',
+                2020: '1.550.628,19',
+                percent2020: '26,27'
+              },
+              {
+                elemento: 'Outros Serviços de Terceiros - Pessoa Física',
+                2021: '267.793,0',
+                percent2021: '-29,18',
+                2020: '378.146,74',
+                percent2020: '-5,30'
+              },
+              {
+                elemento: 'Outros Serviços de Terceiros - Pessoa Jurídica',
+                2021: '5.638.550,4',
+                percent2021: '-6,08',
+                2020: '6.003.701,77',
+                percent2020: '5,65'
+              },
+              {
+                elemento: 'Despesas de Exercícios Anteriores',
+                2021: '89.236,14',
+                percent2021: '-85,61',
+                2020: '620.255,52',
+                percent2020: '14,46'
+              },
+              {
+                elemento: 'Obras e Instalações',
+                2021: '1.465.690,4',
+                percent2021: '46,25',
+                2020: '1.002.187,31',
+                percent2020: '17,71'
+              },
+              {
+                elemento: 'Equipamentos e Material Permanente',
+                2021: '146.359,10',
+                percent2021: '-79,69',
+                2020: '720.456,91',
+                percent2020: '50,72'
               }
             ]
+          }
+        },
+
+        // despesas - procedimentos administrativos
+        {
+          cols: 6,
+          title: 'Procedimentos administrativos para aquisição de bens e serviços',
+          type: 'pie-chart',
+          chart: {
+            data: [{ group: 'Taxas', value: 47900049.2 }, { group: 'IRRF', value: 37900049.2 }, { group: 'ISS', value: 10000000.2 }],
+            options: {
+              title: '',
+              height: '200px',
+              legend: { alignment: 'center' },
+              pie: { alignment: 'center' },
+              toolbar: { enabled: false },
+              color: { scale: { Taxas: colors.success, IRRF: colors.accent, ISS: colors.info } }
+            }
+          }
+        },
+
+        // despesas - processos licitatórios
+        {
+          cols: 6,
+          title: 'Processos licitatórios: Pagamentos por modalidade de licitação',
+          type: 'pie-chart',
+          chart: {
+            data: [{ group: 'Taxas', value: 47900049.2 }, { group: 'IRRF', value: 37900049.2 }, { group: 'ISS', value: 10000000.2 }],
+            options: {
+              title: '',
+              height: '200px',
+              legend: { alignment: 'center' },
+              pie: { alignment: 'center' },
+              toolbar: { enabled: false },
+              color: { scale: { Taxas: colors.success, IRRF: colors.accent, ISS: colors.info } }
+            }
+          }
+        },
+
+        // despesas - despesa mensal por exercício
+        {
+          cols: 12,
+          title: 'Despesa mensal por exercício',
+          type: 'line-chart',
+          chart: {
+            data: [
+              { group: '2021', key: 'JAN', value: 100 },
+              { group: '2021', key: 'FEV', value: 200 },
+              { group: '2021', key: 'MAR', value: 180 },
+              { group: '2021', key: 'ABR', value: 270 },
+              { group: '2021', key: 'MAI', value: 250 },
+              { group: '2021', key: 'JUN', value: 220 },
+              { group: '2021', key: 'JUL', value: 140 },
+              { group: '2021', key: 'AGO', value: 130 },
+              { group: '2021', key: 'SET', value: 150 },
+              { group: '2021', key: 'OUT', value: 170 },
+              { group: '2021', key: 'NOV', value: 300 },
+              { group: '2021', key: 'DEZ', value: 200 },
+              { group: '2020', key: 'JAN', value: 150 },
+              { group: '2020', key: 'FEV', value: 110 },
+              { group: '2020', key: 'MAR', value: 50 },
+              { group: '2020', key: 'ABR', value: 80 },
+              { group: '2020', key: 'MAI', value: 20 },
+              { group: '2020', key: 'JUN', value: 140 },
+              { group: '2020', key: 'JUL', value: 150 },
+              { group: '2020', key: 'AGO', value: 130 },
+              { group: '2020', key: 'SET', value: 250 },
+              { group: '2020', key: 'OUT', value: 300 },
+              { group: '2020', key: 'NOV', value: 100 },
+              { group: '2020', key: 'DEZ', value: 130 },
+              { group: '2019', key: 'JAN', value: 80 },
+              { group: '2019', key: 'FEV', value: 20 },
+              { group: '2019', key: 'MAR', value: 150 },
+              { group: '2019', key: 'ABR', value: 30 },
+              { group: '2019', key: 'MAI', value: 80 },
+              { group: '2019', key: 'JUN', value: 70 },
+              { group: '2019', key: 'JUL', value: 20 },
+              { group: '2019', key: 'AGO', value: 270 },
+              { group: '2019', key: 'SET', value: 220 },
+              { group: '2019', key: 'OUT', value: 250 },
+              { group: '2019', key: 'NOV', value: 130 },
+              { group: '2019', key: 'DEZ', value: 140 }
+            ],
+            options: {
+              title: '',
+              toolbar: { enabled: false },
+              height: '200px',
+              axes: {
+                left: {
+                  mapsTo: 'value',
+                  scaleType: 'linear'
+                },
+                bottom: {
+                  scaleType: 'labels',
+                  mapsTo: 'key'
+                }
+              },
+              color: {
+                scale: {
+                  2021: this.$vuetify.theme.themes.dark.warning,
+                  2020: this.$vuetify.theme.themes.dark.success,
+                  2019: this.$vuetify.theme.themes.dark.info
+                }
+              }
+            }
           }
         },
 
