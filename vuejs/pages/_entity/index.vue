@@ -33,16 +33,6 @@
       </v-row>
     </v-container>
 
-    <!-- receitas e despesas chart -->
-    <v-container>
-      <v-card class="h-100 rounded-lg pa-3" elevation="0">
-        <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Comparativo das receitas e despesas orçamentárias</h2>
-        <v-container v-for="items in comparativo" :key="items.id" class="pa-0">
-          <ccv-area-chart v-if="items.id === 'ArrecadacaoEmpenho'" :data='items.data.chart' :options='items.options'></ccv-area-chart>
-        </v-container>
-      </v-card>
-    </v-container>
-
     <!-- receitas chart -->
     <v-container class="mb-4">
       <h1 class="font-weight-medium lime--text text--darken-4 font-size-24 mb-4">Receitas</h1>
@@ -232,62 +222,6 @@ export default {
         { slug: 'gestao-ambiental', title: 'Gestão Ambiental', icon, valueDesc: this.randomMoney() }
       ]
     },
-    comparativo () {
-      return [
-        {
-          id: 'ArrecadacaoEmpenho',
-          data: {
-            chart: [
-              { group: 'Arrecadação', val: 50, key: 'JAN' },
-              { group: 'Arrecadação', val: 50, key: 'FEV' },
-              { group: 'Arrecadação', val: 80, key: 'MAR' },
-              { group: 'Arrecadação', val: 75, key: 'ABR' },
-              { group: 'Arrecadação', val: 85, key: 'MAI' },
-              { group: 'Arrecadação', val: 75, key: 'JUN' },
-              { group: 'Arrecadação', val: 100, key: 'AGO' },
-              { group: 'Arrecadação', val: 150, key: 'SET' },
-              { group: 'Arrecadação', val: 130, key: 'OUT' },
-              { group: 'Arrecadação', val: 200, key: 'NOV' },
-              { group: 'Arrecadação', val: 220, key: 'DEZ' },
-              { group: 'Empenho', val: 30, key: 'JAN' },
-              { group: 'Empenho', val: 30, key: 'FEV' },
-              { group: 'Empenho', val: 60, key: 'MAR' },
-              { group: 'Empenho', val: 55, key: 'ABR' },
-              { group: 'Empenho', val: 65, key: 'MAI' },
-              { group: 'Empenho', val: 55, key: 'JUN' },
-              { group: 'Empenho', val: 80, key: 'AGO' },
-              { group: 'Empenho', val: 130, key: 'SET' },
-              { group: 'Empenho', val: 110, key: 'OUT' },
-              { group: 'Empenho', val: 180, key: 'NOV' },
-              { group: 'Empenho', val: 200, key: 'DEZ' }
-            ]
-          },
-          options: {
-            title: '',
-            toolbar: { enabled: false },
-            axes: {
-              bottom: {
-                title: '',
-                mapsTo: 'key',
-                scaleType: 'labels'
-              },
-              left: {
-                mapsTo: 'val',
-                title: '',
-                scaleType: 'linear'
-              }
-            },
-            color: {
-              scale: {
-                Arrecadação: this.$vuetify.theme.themes.dark.info,
-                Empenho: this.$vuetify.theme.themes.dark.secondary
-              }
-            },
-            height: '200px'
-          }
-        }
-      ]
-    },
     receitas () {
       return [
         {
@@ -447,6 +381,62 @@ export default {
       const colors = this.$vuetify.theme.themes.dark
       const icon = 'mdi-currency-usd-off'
       return [
+
+        // receitas e despesas
+        {
+          cols: 12,
+          title: 'Comparativo Das Receitas E Despesas Orçamentárias',
+          type: 'area-chart',
+          chart: {
+            data: [
+              { group: 'Arrecadação', val: 50, key: 'JAN' },
+              { group: 'Arrecadação', val: 50, key: 'FEV' },
+              { group: 'Arrecadação', val: 80, key: 'MAR' },
+              { group: 'Arrecadação', val: 75, key: 'ABR' },
+              { group: 'Arrecadação', val: 85, key: 'MAI' },
+              { group: 'Arrecadação', val: 75, key: 'JUN' },
+              { group: 'Arrecadação', val: 100, key: 'AGO' },
+              { group: 'Arrecadação', val: 150, key: 'SET' },
+              { group: 'Arrecadação', val: 130, key: 'OUT' },
+              { group: 'Arrecadação', val: 200, key: 'NOV' },
+              { group: 'Arrecadação', val: 220, key: 'DEZ' },
+              { group: 'Empenho', val: 30, key: 'JAN' },
+              { group: 'Empenho', val: 30, key: 'FEV' },
+              { group: 'Empenho', val: 60, key: 'MAR' },
+              { group: 'Empenho', val: 55, key: 'ABR' },
+              { group: 'Empenho', val: 65, key: 'MAI' },
+              { group: 'Empenho', val: 55, key: 'JUN' },
+              { group: 'Empenho', val: 80, key: 'AGO' },
+              { group: 'Empenho', val: 130, key: 'SET' },
+              { group: 'Empenho', val: 110, key: 'OUT' },
+              { group: 'Empenho', val: 180, key: 'NOV' },
+              { group: 'Empenho', val: 200, key: 'DEZ' }
+            ],
+            options: {
+              title: '',
+              toolbar: { enabled: false },
+              axes: {
+                bottom: {
+                  title: '',
+                  mapsTo: 'key',
+                  scaleType: 'labels'
+                },
+                left: {
+                  mapsTo: 'val',
+                  title: '',
+                  scaleType: 'linear'
+                }
+              },
+              color: {
+                scale: {
+                  Arrecadação: colors.info,
+                  Empenho: colors.secondary
+                }
+              },
+              height: '200px'
+            }
+          }
+        },
 
         // despesas - titulo
         { cols: 12, title: 'Despesas' },
