@@ -11,19 +11,19 @@
           Indicadores
         </h1>
         <v-col class="pa-0">
-          <v-btn class="deep-purple--text text--lighten-2 text-capitalize">
+          <v-btn class="white deep-purple--text text--lighten-2 text-capitalize" elevation="0">
             <v-icon class="warning--text rounded-circle float-left mt-0 mr-2">
             mdi-chart-timeline-variant-shimmer
             </v-icon>
             Receitas
           </v-btn>
-          <v-btn class="mx-2 deep-purple--text text--lighten-2 text-capitalize">
+          <v-btn class="white mx-2 deep-purple--text text--lighten-2 text-capitalize" elevation="0">
             <v-icon class="warning--text rounded-circle float-left mt-0 mr-2">
             mdi-chart-timeline-variant-shimmer
             </v-icon>
             Despesas
           </v-btn>
-          <v-btn class="mx-2 deep-purple--text text--lighten-2 text-capitalize">
+          <v-btn class="white mx-2 deep-purple--text text--lighten-2 text-capitalize" elevation="0">
             <v-icon class="warning--text rounded-circle float-left mt-0 mr-2">
             mdi-chart-timeline-variant-shimmer
             </v-icon>
@@ -45,11 +45,50 @@
 
   <!-- receitas chart -->
     <v-container>
+      <h1 class="font-weight-medium lime--text text--darken-4 font-size-24 mb-4">Receitas</h1>
       <v-row>
         <v-col v-for="items in receitas" :key="items.id" :cols="items.cols">
+
+          <!-- receita mensal -->
           <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaMensal'">
             <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita mensal</h2>
             <ccv-simple-bar-chart :data='items.data.chart' :options='items.options'></ccv-simple-bar-chart>
+          </v-card>
+
+          <!-- previsão arrecadação -->
+          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'PrevisaoArrecadacao'">
+            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Previsão x Arrecadação</h2>
+            <ccv-grouped-bar-chart :data='items.data.chart' :options='items.options'></ccv-grouped-bar-chart>
+          </v-card>
+
+          <!-- receita por origem -->
+          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaOrcamentariaOrigem'">
+            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita Orçamentária por Origem</h2>
+            <div class="d-flex align-center mb-4">
+              <small class="font-size-12 blue-grey--text text--lighten-1 font-weight-bold mt-1 mr-1">R$</small>
+              <p class="font-size-20 light-green--text text-lighten-1 ma-0 font-weight-bold">97.755.202,47</p>
+            </div>
+            <ccv-pie-chart :data='items.data.chart' :options='items.options'></ccv-pie-chart>
+          </v-card>
+
+          <!-- receita de transferências -->
+          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaTransferencias'">
+            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita de Transferências</h2>
+            <div class="d-flex align-center mb-4">
+              <small class="font-size-12 blue-grey--text text--lighten-1 font-weight-bold mt-1 mr-1">R$</small>
+              <p class="font-size-20 light-green--text text-lighten-1 ma-0 font-weight-bold">97.755.202,47</p>
+            </div>
+            <ccv-pie-chart :data='items.data.chart' :options='items.options'></ccv-pie-chart>
+          </v-card>
+
+          <!-- receita tributária -->
+          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaTributaria'">
+            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita Tributária</h2>
+            <div class="d-flex align-center mb-4">
+              <small class="font-size-12 blue-grey--text text--lighten-1 font-weight-bold mt-1 mr-1">R$</small>
+              <p class="font-size-20 light-green--text text-lighten-1 ma-0 font-weight-bold">97.755.202,47</p>
+            </div>
+            <ccv-pie-chart :data='items.data.chart' :options='items.options'></ccv-pie-chart>
           </v-card>
         </v-col>
       </v-row>
@@ -141,7 +180,7 @@ export default {
       return [
         {
           id: 'ReceitaMensal',
-          cols: 12,
+          cols: 8,
           data: {
             chart: [
               { group: 'JAN', value: 280 },
@@ -149,7 +188,7 @@ export default {
               { group: 'MAR', value: 280 },
               { group: 'ABR', value: 340 },
               { group: 'MAI', value: 280 },
-              { group: 'JUL', value: 280 },
+              { group: 'JUN', value: 280 },
               { group: 'JUL', value: 280 },
               { group: 'AGO', value: 280 },
               { group: 'SET', value: 300 },
@@ -170,13 +209,122 @@ export default {
                 mapsTo: 'group',
                 scaleType: 'labels'
               }
+            },
+            color: {
+              scale: {
+                JAN: this.$vuetify.theme.themes.dark.success,
+                FEV: this.$vuetify.theme.themes.dark.success,
+                MAR: this.$vuetify.theme.themes.dark.success,
+                ABR: this.$vuetify.theme.themes.dark.success,
+                MAI: this.$vuetify.theme.themes.dark.success,
+                JUN: this.$vuetify.theme.themes.dark.success,
+                JUL: this.$vuetify.theme.themes.dark.success,
+                AGO: this.$vuetify.theme.themes.dark.success,
+                SET: this.$vuetify.theme.themes.dark.success,
+                OUT: this.$vuetify.theme.themes.dark.success,
+                NOV: this.$vuetify.theme.themes.dark.success,
+                DEZ: this.$vuetify.theme.themes.dark.success
+              }
             }
-            // color: {
-            //   scale: {
-            //     Arrecadação: this.$vuetify.theme.themes.dark.info,
-            //     Empenho: this.$vuetify.theme.themes.dark.secondary
-            //   }
-            // }
+          }
+        }, {
+          id: 'PrevisaoArrecadacao',
+          cols: 4,
+          data: {
+            chart: [
+              { group: 'Previsão', key: '2019', value: 75000000 },
+              { group: 'Previsão', key: '2020', value: 95000000 },
+              { group: 'Previsão', key: '2021', value: 100000000 },
+              { group: 'Arrecadação', key: '2019', value: 100000000 },
+              { group: 'Arrecadação', key: '2020', value: 85000000 },
+              { group: 'Arrecadação', key: '2021', value: 90000000 }
+            ]
+          },
+          options: {
+            title: '',
+            toolbar: { enabled: false },
+            height: '200px',
+            axes: {
+              left: {
+                mapsTo: 'key',
+                scaleType: 'labels'
+              },
+              bottom: {
+                mapsTo: 'value'
+              }
+            },
+            color: {
+              scale: {
+                Previsão: this.$vuetify.theme.themes.dark.warning,
+                Arrecadação: this.$vuetify.theme.themes.dark.success
+              }
+            }
+          }
+        }, {
+          id: 'ReceitaOrcamentariaOrigem',
+          cols: 4,
+          data: {
+            chart: [
+              { group: 'Rec. Transferências', value: 47900049.2 },
+              { group: 'Rec. de Contribuições', value: 37900049.2 },
+              { group: 'Rec. Tributária', value: 10000000.2 }
+            ]
+          },
+          options: {
+            title: '',
+            toolbar: { enabled: false },
+            height: '200px',
+            color: {
+              scale: {
+                'Rec. Transferências': this.$vuetify.theme.themes.dark.success,
+                'Rec. de Contribuições': this.$vuetify.theme.themes.dark.accent,
+                'Rec. Tributária': this.$vuetify.theme.themes.dark.info
+              }
+            }
+          }
+        }, {
+          id: 'ReceitaTransferencias',
+          cols: 4,
+          data: {
+            chart: [
+              { group: 'FPM', value: 47900049.2 },
+              { group: 'Educação', value: 37900049.2 },
+              { group: 'Saúde', value: 10000000.2 }
+            ]
+          },
+          options: {
+            title: '',
+            toolbar: { enabled: false },
+            height: '200px',
+            color: {
+              scale: {
+                FPM: this.$vuetify.theme.themes.dark.success,
+                Educação: this.$vuetify.theme.themes.dark.accent,
+                Saúde: this.$vuetify.theme.themes.dark.info
+              }
+            }
+          }
+        }, {
+          id: 'ReceitaTributaria',
+          cols: 4,
+          data: {
+            chart: [
+              { group: 'Taxas', value: 47900049.2 },
+              { group: 'IRRF', value: 37900049.2 },
+              { group: 'ISS', value: 10000000.2 }
+            ]
+          },
+          options: {
+            title: '',
+            toolbar: { enabled: false },
+            height: '200px',
+            color: {
+              scale: {
+                Taxas: this.$vuetify.theme.themes.dark.success,
+                IRRF: this.$vuetify.theme.themes.dark.accent,
+                ISS: this.$vuetify.theme.themes.dark.info
+              }
+            }
           }
         }
       ]
