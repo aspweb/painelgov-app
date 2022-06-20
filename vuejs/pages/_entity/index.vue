@@ -90,6 +90,7 @@
             </div>
             <ccv-pie-chart :data='items.data.chart' :options='items.options'></ccv-pie-chart>
           </v-card>
+
         </v-col>
       </v-row>
     </v-container>
@@ -132,21 +133,33 @@
           ></ccv-pie-chart>
         </v-card>
 
+        <!-- simple area chart -->
+        <v-card
+          v-if="obj.type === 'area-chart'"
+          class="h-100 rounded-lg pa-3"
+          elevation="0"
+        >
+          <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">{{ obj.title }}</h2>
+          <ccv-area-chart
+            v-if="obj.chart"
+            :data="obj.chart.data"
+            :options="obj.chart.options"
+          ></ccv-area-chart>
+        </v-card>
+
         <!-- links -->
         <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="obj.type === 'links'">
           <div class="d-flex align-center mb-5">
             <h2 class="text-uppercase font-size-12 black--text font-weight-medium mr-3">{{ obj.title }}</h2>
-            <small class="font-size-13 lime--text text--darken-4">
-              {{ obj.subtitle }}
-            </small>
+            <small class="font-size-13 lime--text text--darken-4">{{ obj.subtitle }}</small>
           </div>
           <div class="d-flex justify-center">
             <div v-for="despesas in obj.data" :key="despesas.slug" class="mr-4 rounded-lg pb-1">
               <div class="d-flex">
                 <v-icon class="primary white--text rounded-circle float-left mr-2" dense>{{ despesas.icon }}</v-icon>
-                  <a class="text-decoration-none font-weight-medium primary--text font-size-15">
-                    {{ despesas.title }}
-                  </a>
+                <a class="text-decoration-none font-weight-medium primary--text font-size-15">
+                  {{ despesas.title }}
+                </a>
               </div>
               <p class="blue-grey--text text--lighten-1 font-weight-medium font-size-14 mb-0">
                 <span class="font-size-12">R$</span>
@@ -187,6 +200,7 @@
             hide-default-footer
           />
         </v-card>
+
       </v-col>
     </v-row>
     <!-- /blocos -->
@@ -585,7 +599,7 @@ export default {
         // folha - titulo
         { cols: 12, title: 'Folha' },
 
-        // folha - Folha de pagamento
+        // folha - pagamento
         {
           cols: 8,
           title: 'Folha de pagamento - vencimentos e vantagens',
@@ -615,11 +629,7 @@ export default {
           title: 'Folha por vínculo funcional',
           type: 'pie-chart',
           chart: {
-            data: [
-              { group: 'Taxas', value: 47900049.2 },
-              { group: 'IRRF', value: 37900049.2 },
-              { group: 'ISS', value: 10000000.2 }
-            ],
+            data: [{ group: 'Taxas', value: 47900049.2 }, { group: 'IRRF', value: 37900049.2 }, { group: 'ISS', value: 10000000.2 }],
             options: {
               title: '',
               height: '200px',
@@ -631,7 +641,7 @@ export default {
           }
         },
 
-        // folha - Diárias
+        // folha - diarias
         {
           cols: 8,
           title: 'Diárias',
@@ -655,17 +665,13 @@ export default {
           }
         },
 
-        // folha - Quantidade de agentes por unidade orçamentária
+        // folha - agentes por unidade
         {
           cols: 4,
           title: 'Quantidade de agentes por unidade orçamentária',
           type: 'pie-chart',
           chart: {
-            data: [
-              { group: 'Taxas', value: 47900049.2 },
-              { group: 'IRRF', value: 37900049.2 },
-              { group: 'ISS', value: 10000000.2 }
-            ],
+            data: [{ group: 'Taxas', value: 47900049.2 }, { group: 'IRRF', value: 37900049.2 }, { group: 'ISS', value: 10000000.2 }],
             options: {
               title: '',
               height: '200px',
@@ -673,6 +679,49 @@ export default {
               pie: { alignment: 'center' },
               toolbar: { enabled: false },
               color: { scale: { Taxas: colors.success, IRRF: colors.accent, ISS: colors.info } }
+            }
+          }
+        },
+
+        // folha - MENSAL PAGAMENTO VENCIMENTOS VANTAGENS
+        {
+          cols: 12,
+          title: 'Despesa mensal com folha de pagamento - vencimentos e vantagens - por exercício',
+          type: 'area-chart',
+          chart: {
+            data: [
+              { group: 'Arrecadação', val: 50, key: 'JAN' },
+              { group: 'Arrecadação', val: 50, key: 'FEV' },
+              { group: 'Arrecadação', val: 80, key: 'MAR' },
+              { group: 'Arrecadação', val: 75, key: 'ABR' },
+              { group: 'Arrecadação', val: 85, key: 'MAI' },
+              { group: 'Arrecadação', val: 75, key: 'JUN' },
+              { group: 'Arrecadação', val: 100, key: 'AGO' },
+              { group: 'Arrecadação', val: 150, key: 'SET' },
+              { group: 'Arrecadação', val: 130, key: 'OUT' },
+              { group: 'Arrecadação', val: 200, key: 'NOV' },
+              { group: 'Arrecadação', val: 220, key: 'DEZ' },
+              { group: 'Empenho', val: 30, key: 'JAN' },
+              { group: 'Empenho', val: 30, key: 'FEV' },
+              { group: 'Empenho', val: 60, key: 'MAR' },
+              { group: 'Empenho', val: 55, key: 'ABR' },
+              { group: 'Empenho', val: 65, key: 'MAI' },
+              { group: 'Empenho', val: 55, key: 'JUN' },
+              { group: 'Empenho', val: 80, key: 'AGO' },
+              { group: 'Empenho', val: 130, key: 'SET' },
+              { group: 'Empenho', val: 110, key: 'OUT' },
+              { group: 'Empenho', val: 180, key: 'NOV' },
+              { group: 'Empenho', val: 200, key: 'DEZ' }
+            ],
+            options: {
+              title: '',
+              toolbar: { enabled: false },
+              axes: {
+                bottom: { title: '', mapsTo: 'key', scaleType: 'labels' },
+                left: { mapsTo: 'val', title: '', scaleType: 'linear' }
+              },
+              color: { scale: { Arrecadação: colors.info, Empenho: colors.secondary } },
+              height: '200px'
             }
           }
         }
