@@ -132,6 +132,29 @@
           ></ccv-pie-chart>
         </v-card>
 
+        <!-- despesa por função -->
+        <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="obj.type === 'links'">
+          <div class="d-flex align-center mb-5">
+            <h2 class="text-uppercase font-size-12 black--text font-weight-medium mr-3">{{ obj.title }}</h2>
+            <small class="font-size-13 lime--text text--darken-4">
+              {{ obj.subtitle }}
+            </small>
+          </div>
+          <div class="d-flex justify-center">
+            <div v-for="despesas in obj.data" :key="despesas.slug" class="mr-4 rounded-lg pb-1">
+              <div class="d-flex">
+                <v-icon class="primary white--text rounded-circle float-left mr-2" dense>{{ despesas.icon }}</v-icon>
+                  <a class="text-decoration-none font-weight-medium primary--text font-size-15">
+                    {{ despesas.title }}
+                  </a>
+              </div>
+              <p class="blue-grey--text text--lighten-1 font-weight-medium font-size-14 mb-0">
+                <span class="font-size-12">R$</span>
+                {{ despesas.valueDesc }}
+              </p>
+            </div>
+          </div>
+        </v-card>
       </v-col>
     </v-row>
     <!-- /blocos -->
@@ -376,7 +399,26 @@ export default {
     // blocos
     blocks () {
       const colors = this.$vuetify.theme.themes.dark
+      const icon = 'mdi-currency-usd-off'
       return [
+
+        // despesas - titulo
+        { cols: 12, title: 'Despesas' },
+
+        // despesas - despesa por função
+        {
+          cols: 12,
+          title: 'Despesa por função',
+          subtitle: 'Despesas liquidadas por Função.',
+          type: 'links',
+          data: [
+            { slug: 'saude', title: 'Saúde', icon, valueDesc: this.randomMoney() },
+            { slug: 'educacao', title: 'Educação', icon, valueDesc: this.randomMoney() },
+            { slug: 'administracao', title: 'Administração', icon, valueDesc: this.randomMoney() },
+            { slug: 'assistencia-social', title: 'Assistência Social', icon, valueDesc: this.randomMoney() },
+            { slug: 'gestao-ambiental', title: 'Gestão Ambiental', icon, valueDesc: this.randomMoney() }
+          ]
+        },
 
         // folha - titulo
         { cols: 12, title: 'Folha' },
