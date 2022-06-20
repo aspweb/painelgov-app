@@ -1,38 +1,59 @@
 <template>
   <v-container v-cloak class="pt-8">
 
-    <!-- areas de atuacao -->
-    <AreasAtuacao
-      @click="goTo"
-      :items="areasAtuacao"
-      :entidade="entidade"
-      class="mb-3"
-    />
+    <!-- header -->
+    <v-container>
+      <v-row class="px-2">
+        <h1 class="font-weight-medium blue-grey--text text--darken-4 font-size-24 mb-10 mr-5">
+          <v-icon class="warning--text rounded-circle float-left mt-0 mr-2">
+            mdi-chart-timeline-variant-shimmer
+          </v-icon>
+          Indicadores
+        </h1>
+        <v-col class="pa-0">
+          <v-btn class="deep-purple--text text--lighten-2 text-capitalize">
+            <v-icon class="warning--text rounded-circle float-left mt-0 mr-2">
+            mdi-chart-timeline-variant-shimmer
+            </v-icon>
+            Receitas
+          </v-btn>
+          <v-btn class="mx-2 deep-purple--text text--lighten-2 text-capitalize">
+            <v-icon class="warning--text rounded-circle float-left mt-0 mr-2">
+            mdi-chart-timeline-variant-shimmer
+            </v-icon>
+            Despesas
+          </v-btn>
+          <v-btn class="mx-2 deep-purple--text text--lighten-2 text-capitalize">
+            <v-icon class="warning--text rounded-circle float-left mt-0 mr-2">
+            mdi-chart-timeline-variant-shimmer
+            </v-icon>
+            Folha
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    <!-- visao geral -->
-    <VisaoGeral :items="gridBlocks" />
+    <!-- receitas e despesas chart -->
+    <v-container>
+      <v-card class="h-100 rounded-lg pa-3" elevation="0">
+        <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Comparativo das receitas e despesas orçamentárias</h2>
+        <v-container v-for="items in comparativo" :key="items.id" class="pa-0">
+          <ccv-area-chart v-if="items.id === 'ArrecadacaoEmpenho'" :data='items.data.chart' :options='items.options'></ccv-area-chart>
+        </v-container>
+      </v-card>
+    </v-container>
 
-    <!-- TESTES - RETIRAR
+  <!-- receitas chart -->
     <v-container>
       <v-row>
-        <v-btn
-          v-for="(btn, i) in [
-            'primary',
-            'secondary',
-            'success',
-            'info',
-            'error',
-            'warning',
-            'accent'
-          ]"
-          :key="i"
-          :color="btn"
-          rounded>
-          {{ btn }}
-        </v-btn>
+        <v-col v-for="items in receitas" :key="items.id" :cols="items.cols">
+          <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="items.id === 'ReceitaMensal'">
+            <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">Receita mensal</h2>
+            <ccv-simple-bar-chart :data='items.data.chart' :options='items.options'></ccv-simple-bar-chart>
+          </v-card>
+        </v-col>
       </v-row>
-    </v-container> -->
-
+    </v-container>
   </v-container>
 </template>
 
@@ -41,7 +62,7 @@ import { mapGetters, mapMutations } from 'vuex'
 import BaseView from '@/mixins/BaseView.js'
 import lib from '@/aspec-toolkit/utils/lib.js'
 export default {
-  name: 'Entidade',
+  name: 'Indicadores',
   layout: 'logged',
   mixins: [BaseView],
   computed: {
@@ -60,115 +81,102 @@ export default {
         { slug: 'gestao-ambiental', title: 'Gestão Ambiental', icon, valueDesc: this.randomMoney() }
       ]
     },
-    gridBlocks () {
+    comparativo () {
       return [
         {
-          id: 'ReceitaPrevistaArrecadada',
-          cols: 3,
+          id: 'ArrecadacaoEmpenho',
           data: {
-            totalPrevisto: this.randomMoney(),
-            totalArrecadado: this.randomMoney()
-          }
-        }, {
-          id: 'DespesasOrcamentarias',
-          cols: 3,
-          data: {
-            empenhados: 50,
-            liquidados: 40,
-            pagos: 30
-          }
-        }, {
-          id: 'RecursosFederaisRecebidos',
-          cols: 3,
-          data: {
-            totalPrevisto: this.randomMoney(),
-            totalLiberado: this.randomMoney()
-          }
-        }, {
-          id: 'DespesasCategoriaEconomica',
-          cols: 3,
-          data: {
-            list: [
-              {
-                label: 'Despesas correntes',
-                color: 'secondary',
-                autorizado: 85,
-                pago: 45
-              }, {
-                label: 'Despesas de capital',
-                color: 'secondary',
-                autorizado: 65,
-                pago: 35
-              }, {
-                label: 'Reserva de contingência',
-                color: 'secondary',
-                autorizado: 45,
-                pago: 24
-              }
+            chart: [
+              { group: 'Arrecadação', val: 50, key: 'JAN' },
+              { group: 'Arrecadação', val: 50, key: 'FEV' },
+              { group: 'Arrecadação', val: 80, key: 'MAR' },
+              { group: 'Arrecadação', val: 75, key: 'ABR' },
+              { group: 'Arrecadação', val: 85, key: 'MAI' },
+              { group: 'Arrecadação', val: 75, key: 'JUN' },
+              { group: 'Arrecadação', val: 100, key: 'AGO' },
+              { group: 'Arrecadação', val: 150, key: 'SET' },
+              { group: 'Arrecadação', val: 130, key: 'OUT' },
+              { group: 'Arrecadação', val: 200, key: 'NOV' },
+              { group: 'Arrecadação', val: 220, key: 'DEZ' },
+              { group: 'Empenho', val: 30, key: 'JAN' },
+              { group: 'Empenho', val: 30, key: 'FEV' },
+              { group: 'Empenho', val: 60, key: 'MAR' },
+              { group: 'Empenho', val: 55, key: 'ABR' },
+              { group: 'Empenho', val: 65, key: 'MAI' },
+              { group: 'Empenho', val: 55, key: 'JUN' },
+              { group: 'Empenho', val: 80, key: 'AGO' },
+              { group: 'Empenho', val: 130, key: 'SET' },
+              { group: 'Empenho', val: 110, key: 'OUT' },
+              { group: 'Empenho', val: 180, key: 'NOV' },
+              { group: 'Empenho', val: 200, key: 'DEZ' }
             ]
+          },
+          options: {
+            title: '',
+            toolbar: { enabled: false },
+            axes: {
+              bottom: {
+                title: '',
+                mapsTo: 'key',
+                scaleType: 'labels'
+              },
+              left: {
+                mapsTo: 'val',
+                title: '',
+                scaleType: 'linear'
+              }
+            },
+            color: {
+              scale: {
+                Arrecadação: this.$vuetify.theme.themes.dark.info,
+                Empenho: this.$vuetify.theme.themes.dark.secondary
+              }
+            },
+            height: '200px'
           }
-        }, {
-          id: 'ReceitasDespesas',
+        }
+      ]
+    },
+    receitas () {
+      return [
+        {
+          id: 'ReceitaMensal',
           cols: 12,
           data: {
             chart: [
-              { group: 'Receitas', val: 10000, key: 'JAN' },
-              { group: 'Receitas', val: 65000, key: 'FEV' },
-              { group: 'Receitas', val: 10000, key: 'MAR' },
-              { group: 'Receitas', val: 49213, key: 'ABR' },
-              { group: 'Receitas', val: 51213, key: 'MAI' },
-              { group: 'Despesas', val: 20000, key: 'JAN' },
-              { group: 'Despesas', val: 25000, key: 'FEV' },
-              { group: 'Despesas', val: 60000, key: 'MAR' },
-              { group: 'Despesas', val: 30213, key: 'ABR' },
-              { group: 'Despesas', val: 55213, key: 'MAI' }
+              { group: 'JAN', value: 280 },
+              { group: 'FEV', value: 310 },
+              { group: 'MAR', value: 280 },
+              { group: 'ABR', value: 340 },
+              { group: 'MAI', value: 280 },
+              { group: 'JUL', value: 280 },
+              { group: 'JUL', value: 280 },
+              { group: 'AGO', value: 280 },
+              { group: 'SET', value: 300 },
+              { group: 'OUT', value: 0 },
+              { group: 'NOV', value: 0 },
+              { group: 'DEZ', value: 0 }
             ]
-          }
-        }, {
-          id: 'NumerosGerais',
-          cols: 6,
-          data: {
-            header: [
-              { txt: 'Saldo das Contas', val: '16.171.907,44', color: 'success' },
-              { txt: 'Comprometido', val: '24.479.730,62', color: 'success' },
-              { txt: 'Disponível', val: '-10.169.024,47', color: 'warning' }
-            ],
-            body: [
-              { txt: 'Orçamento', val: '786.785,66' },
-              { txt: 'Habitantes', val: '786.785,66' },
-              { txt: 'Servidores', val: '786.785,66' },
-              { txt: 'IDEB', val: '786.785,66' },
-              { txt: 'Empresas', val: '786.785,66' },
-              { txt: 'Ímóveis', val: '786.785,66' },
-              { txt: 'Patrimônio', val: '786.785,66' },
-              { txt: 'Investimento em obras', val: '786.785,66' }
-            ]
-          }
-        }, {
-          id: 'OrgaosMaioresGastos',
-          cols: 6,
-          data: {
-            header: [
-              { txt: 'Total Empenhado', val: '163.929.385,38', color: 'success' },
-              { txt: 'Total Liquidado', val: '53.747.984,97', color: 'success' },
-              { txt: 'Total Pago', val: '52.018.023,50', color: 'success' }
-            ],
-            table: {
-              headers: [
-                { text: 'Especificação', value: 'especificacao' },
-                { text: 'Empenhado', value: 'empenhado' },
-                { text: 'Liquidado', value: 'liquidado' },
-                { text: 'Pago', value: 'pago' }
-              ],
-              data: [
-                { especificacao: 'Gabinete do Prefeito', empenhado: '6.702.808,90', liquidado: '1.151.685,96', pago: '786.785,66' },
-                { especificacao: 'Sec. de Planej. Administração e Finanças', empenhado: '27.048.177,96', liquidado: '58.898,89', pago: '7.442,80' },
-                { especificacao: 'Sec. de Desenv. Economico e Turismo', empenhado: '6.702.808,90', liquidado: '1.151.685,96 ', pago: '786.785,66' },
-                { especificacao: 'Secretaria de Saude', empenhado: '6.702.808,90', liquidado: '1.151.685,96 ', pago: '786.785,66' },
-                { especificacao: 'Procuradoria Geral do Municipio', empenhado: '6.702.808,90', liquidado: '1.151.685,96', pago: '786.785,66' },
-                { especificacao: 'Gabinete do Prefeito', empenhado: '6.702.808,90', liquidado: '1.151.685,96', pago: '786.785,66' }
-              ]
+          },
+          options: {
+            title: '',
+            toolbar: { enabled: false },
+            height: '200px',
+            axes: {
+              left: {
+                mapsTo: 'value'
+              },
+              bottom: {
+                mapsTo: 'group',
+                scaleType: 'labels'
+              }
             }
+            // color: {
+            //   scale: {
+            //     Arrecadação: this.$vuetify.theme.themes.dark.info,
+            //     Empenho: this.$vuetify.theme.themes.dark.secondary
+            //   }
+            // }
           }
         }
       ]
