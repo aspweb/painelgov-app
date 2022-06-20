@@ -118,7 +118,7 @@
           ></ccv-simple-bar-chart>
         </v-card>
 
-        <!-- simple bar chart -->
+        <!-- pie chart -->
         <v-card
           v-if="obj.type === 'pie-chart'"
           class="h-100 rounded-lg pa-3"
@@ -132,7 +132,7 @@
           ></ccv-pie-chart>
         </v-card>
 
-        <!-- despesa por função -->
+        <!-- links -->
         <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="obj.type === 'links'">
           <div class="d-flex align-center mb-5">
             <h2 class="text-uppercase font-size-12 black--text font-weight-medium mr-3">{{ obj.title }}</h2>
@@ -154,6 +154,38 @@
               </p>
             </div>
           </div>
+        </v-card>
+
+        <!-- vertical grouped bar chart -->
+        <v-card
+          v-if="obj.type === 'vertical-grouped-bar-chart'"
+          class="h-100 rounded-lg pa-3"
+          elevation="0"
+        >
+          <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">{{ obj.title }}</h2>
+          <ccv-grouped-bar-chart
+            v-if="obj.chart"
+            :data="obj.chart.data"
+            :options="obj.chart.options"
+          ></ccv-grouped-bar-chart>
+        </v-card>
+
+        <!-- horizontal grouped bar chart -->
+        <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="obj.type === 'horizontal-grouped-bar-chart'">
+          <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">{{ obj.title }}</h2>
+          <ccv-grouped-bar-chart :data="obj.chart.data" :options="obj.chart.options"></ccv-grouped-bar-chart>
+        </v-card>
+
+        <!-- table -->
+        <v-card class="h-100 rounded-lg pa-3" elevation="0" v-if="obj.type === 'table'">
+          <h2 class="text-uppercase font-size-12 blue-grey--text text--lighten-1 font-weight-medium mb-4">{{ obj.title }}</h2>
+          <v-data-table
+            :headers="obj.data.headers"
+            :items="obj.data.items"
+            :items-per-page="-1"
+            class="blue-grey--text text--darken-3"
+            hide-default-footer
+          />
         </v-card>
       </v-col>
     </v-row>
@@ -418,6 +450,136 @@ export default {
             { slug: 'assistencia-social', title: 'Assistência Social', icon, valueDesc: this.randomMoney() },
             { slug: 'gestao-ambiental', title: 'Gestão Ambiental', icon, valueDesc: this.randomMoney() }
           ]
+        },
+
+        // despesas - despesa mensal
+        {
+          cols: 8,
+          title: 'Despesa mensal',
+          type: 'vertical-grouped-bar-chart',
+          chart: {
+            data: [
+              { group: 'Empenhados', key: 'JAN', value: 350 },
+              { group: 'Empenhados', key: 'FEV', value: 50 },
+              { group: 'Empenhados', key: 'MAR', value: 110 },
+              { group: 'Empenhados', key: 'ABR', value: 60 },
+              { group: 'Empenhados', key: 'MAI', value: 120 },
+              { group: 'Empenhados', key: 'JUL', value: 50 },
+              { group: 'Empenhados', key: 'JUN', value: 280 },
+              { group: 'Empenhados', key: 'AGO', value: 50 },
+              { group: 'Empenhados', key: 'SET', value: 70 },
+              { group: 'Empenhados', key: 'OUT', value: 130 },
+              { group: 'Empenhados', key: 'NOV', value: 50 },
+              { group: 'Empenhados', key: 'DEZ', value: 140 },
+              { group: 'Liquidados', key: 'JAN', value: 80 },
+              { group: 'Liquidados', key: 'FEV', value: 90 },
+              { group: 'Liquidados', key: 'MAR', value: 200 },
+              { group: 'Liquidados', key: 'ABR', value: 110 },
+              { group: 'Liquidados', key: 'MAI', value: 130 },
+              { group: 'Liquidados', key: 'JUL', value: 115 },
+              { group: 'Liquidados', key: 'JUN', value: 200 },
+              { group: 'Liquidados', key: 'AGO', value: 210 },
+              { group: 'Liquidados', key: 'SET', value: 180 },
+              { group: 'Liquidados', key: 'OUT', value: 160 },
+              { group: 'Liquidados', key: 'NOV', value: 140 },
+              { group: 'Liquidados', key: 'DEZ', value: 50 },
+              { group: 'Pagos', key: 'JAN', value: 70 },
+              { group: 'Pagos', key: 'FEV', value: 60 },
+              { group: 'Pagos', key: 'MAR', value: 10 },
+              { group: 'Pagos', key: 'ABR', value: 100 },
+              { group: 'Pagos', key: 'MAI', value: 200 },
+              { group: 'Pagos', key: 'JUL', value: 150 },
+              { group: 'Pagos', key: 'JUN', value: 170 },
+              { group: 'Pagos', key: 'AGO', value: 160 },
+              { group: 'Pagos', key: 'SET', value: 160 },
+              { group: 'Pagos', key: 'OUT', value: 110 },
+              { group: 'Pagos', key: 'NOV', value: 50 },
+              { group: 'Pagos', key: 'DEZ', value: 200 }
+            ],
+            options: {
+              title: '',
+              toolbar: { enabled: false },
+              height: '200px',
+              axes: {
+                left: {
+                  mapsTo: 'value'
+                },
+                bottom: {
+                  scaleType: 'labels',
+                  mapsTo: 'key'
+                }
+              },
+              color: {
+                scale: {
+                  Empenhados: this.$vuetify.theme.themes.dark.warning,
+                  Liquidados: this.$vuetify.theme.themes.dark.success,
+                  Pagos: this.$vuetify.theme.themes.dark.info
+                }
+              }
+            }
+          }
+        },
+
+        // despesas - fixação x execução
+        {
+          cols: 4,
+          title: 'Fixação x Execução',
+          type: 'horizontal-grouped-bar-chart',
+          chart: {
+            data: [
+              { group: 'Fixação', key: '2019', value: 75000000 },
+              { group: 'Fixação', key: '2020', value: 95000000 },
+              { group: 'Fixação', key: '2021', value: 100000000 },
+              { group: 'Execução', key: '2019', value: 100000000 },
+              { group: 'Execução', key: '2020', value: 85000000 },
+              { group: 'Execução', key: '2021', value: 90000000 }
+            ],
+            options: {
+              title: '',
+              toolbar: { enabled: false },
+              height: '200px',
+              axes: {
+                left: {
+                  mapsTo: 'key',
+                  scaleType: 'labels'
+                },
+                bottom: {
+                  mapsTo: 'value'
+                }
+              },
+              color: {
+                scale: {
+                  Fixação: this.$vuetify.theme.themes.dark.warning,
+                  Execução: this.$vuetify.theme.themes.dark.success
+                }
+              }
+            }
+          }
+        },
+
+        // despesas - gastos por elemento de despesa
+        {
+          cols: 12,
+          title: 'Gastos por elemento de despesa',
+          type: 'table',
+          data: {
+            headers: [
+              { text: 'Elemento de despesa', value: 'elemento' },
+              { text: '2021', value: '2021' },
+              { text: '%', value: 'percent2021' },
+              { text: '2020', value: '2020' },
+              { text: '%', value: 'percent2020' }
+            ],
+            items: [
+              {
+                elemento: 'Obrigações Patronais',
+                2021: '3.805.245,11',
+                percent2021: '10,72',
+                2020: '3.436.744,8',
+                percent2020: '66,03'
+              }
+            ]
+          }
         },
 
         // folha - titulo
