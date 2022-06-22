@@ -210,6 +210,7 @@ export default {
             options: {
               title: '',
               toolbar: { enabled: false },
+              legend: { alignment: 'center' },
               axes: {
                 bottom: {
                   title: '',
@@ -249,6 +250,7 @@ export default {
               title: '',
               toolbar: { enabled: false },
               height: '200px',
+              legend: { alignment: 'center' },
               axes: {
                 left: { mapsTo: 'value' },
                 bottom: { mapsTo: 'group', scaleType: 'labels' }
@@ -278,6 +280,7 @@ export default {
               title: '',
               toolbar: { enabled: false },
               height: '200px',
+              legend: { alignment: 'center' },
               axes: {
                 left: {
                   mapsTo: 'key',
@@ -420,6 +423,7 @@ export default {
               title: '',
               toolbar: { enabled: false },
               height: '200px',
+              legend: { alignment: 'center' },
               axes: {
                 left: {
                   mapsTo: 'value'
@@ -458,6 +462,7 @@ export default {
               title: '',
               toolbar: { enabled: false },
               height: '200px',
+              legend: { alignment: 'center' },
               axes: {
                 left: {
                   mapsTo: 'key',
@@ -642,6 +647,7 @@ export default {
               title: '',
               toolbar: { enabled: false },
               height: '200px',
+              legend: { alignment: 'center' },
               axes: {
                 left: {
                   mapsTo: 'value',
@@ -679,6 +685,7 @@ export default {
               title: '',
               toolbar: { enabled: false },
               height: '200px',
+              legend: { alignment: 'center' },
               axes: {
                 left: { mapsTo: 'value' },
                 bottom: { mapsTo: 'group', scaleType: 'labels' }
@@ -721,6 +728,7 @@ export default {
               title: '',
               toolbar: { enabled: false },
               height: '200px',
+              legend: { alignment: 'center' },
               axes: {
                 left: { mapsTo: 'value' },
                 bottom: { mapsTo: 'group', scaleType: 'labels' }
@@ -783,12 +791,13 @@ export default {
             options: {
               title: '',
               toolbar: { enabled: false },
+              height: '200px',
+              legend: { alignment: 'center' },
               axes: {
                 bottom: { title: '', mapsTo: 'key', scaleType: 'labels' },
                 left: { mapsTo: 'val', title: '', scaleType: 'linear' }
               },
-              color: { scale: { Arrecadação: colors.info, Empenho: colors.secondary } },
-              height: '200px'
+              color: { scale: { Arrecadação: colors.info, Empenho: colors.secondary } }
             }
           }
         }

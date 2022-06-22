@@ -154,6 +154,7 @@ export default {
       return {
         width: '100%',
         height: '200px',
+        legend: { alignment: 'center' },
         toolbar: { enabled: false },
         color: { scale }
       }
